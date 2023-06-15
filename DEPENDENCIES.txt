@@ -1,0 +1,19 @@
+### REQUIRED PACKAGES FOR RETROPY ###
+
+python3
+--to run program [apt package]
+
+python3-pip
+--to install program's libraries [apt package]
+
+pygame
+--GUI components of program [pip package]
+
+flatpak
+--to install and run SNES emulator, Snes9x [apt package]
+
+fceux
+--NES emulator [apt package]
+
+Snes9x
+--SNES emulator [flat package]

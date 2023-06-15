@@ -5,6 +5,7 @@ class Game:
     _directory = ""
 
     def __init__ (self, filename):
+        
         file = open(filename, "r")
         data = json.load(file)
         file.close()

@@ -3,6 +3,7 @@
 #LAST UPDATED: June 15, 2023
 #GOAL: to make an Emulation hub for Nintendo games. Simply choose a game and play
 
+import os
 from emulator import *
 from game import *
 
@@ -10,19 +11,19 @@ from game import *
 def make_emulator(name, command, system=""):
     emu_dict = {"system":system, "command":command}
 
-    with open(f'json/{name}.json', "w") as json_file:
+    with open(f'{os.getcwd()}/core/json/{name}.json', "w") as json_file:
         json.dump(emu_dict, json_file)
 
-    return f'json/{name}.json'
+    return f'core/json/{name}.json'
 
 #Generate JSON file for game
 def make_game(file, directory, name="", release=""):
     game_dict = {"name":name, "release":release, "directory":directory}
     
-    with open(f'json/{file}.json', "w") as json_file:
+    with open(f'{os.getcwd()}/core/json/{file}.json', "w") as json_file:
         json.dump(game_dict, json_file)
 
-    return f'json/{file}.json'
+    return f'core/json/{file}.json'
 
 #Set up games
 mario1 = make_game("supermariobros", "/home/jmuszka/Downloads/supermariobros.nes", "Super Mario Bros.", "1985")
@@ -39,4 +40,4 @@ nes = make_emulator("nes", "fceux", "Nintendo Entertainment System")
 nes = Emulator(nes)
 
 #Play!
-nes.play(mario2)
+nes.play(mario1)
