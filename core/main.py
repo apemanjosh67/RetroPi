@@ -29,15 +29,19 @@ def make_game(file, directory, name="", release=""):
 mario1 = make_game("supermariobros", "/home/jmuszka/Downloads/supermariobros.nes", "Super Mario Bros.", "1985")
 mario2 = make_game("lostlevels", "/home/jmuszka/Downloads/lostlevels.nes", "Super Mario Bros. The Lost Levels", "1986")
 tetris = make_game("tetris", "/home/jmuszka/Downloads/tetris.nes", "Tetris", "1984")
+marioworld = make_game("supermarioworld", "/home/jmuszka/Downloads/supermarioworld.smc", "Super Mario World", "1990")
 
 mario1 = Game(mario1)
 mario2 = Game(mario2)
 tetris = Game(tetris)
-
+marioworld = Game(marioworld)
 
 #Set up emulator
-nes = make_emulator("nes", "fceux", "Nintendo Entertainment System")
-nes = Emulator(nes)
+nes_json = make_emulator("nes", "fceux", "Nintendo Entertainment System")
+nes = Emulator(nes_json)
+
+snes_json = make_emulator("snes", "flatpak run com.snes9x.Snes9x", "Super NES")
+snes = Emulator(snes_json)
 
 #Play!
-nes.play(mario1)
+snes.play(marioworld)
