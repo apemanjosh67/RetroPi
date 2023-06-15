@@ -10,19 +10,19 @@ from game import *
 def make_emulator(name, command, system=""):
     emu_dict = {"system":system, "command":command}
 
-    with open(f'{name}.json', "w") as json_file:
+    with open(f'json/{name}.json', "w") as json_file:
         json.dump(emu_dict, json_file)
 
-    return f'{name}.json'
+    return f'json/{name}.json'
 
 #Generate JSON file for game
 def make_game(file, directory, name="", release=""):
     game_dict = {"name":name, "release":release, "directory":directory}
     
-    with open(f'{file}.json', "w") as json_file:
+    with open(f'json/{file}.json', "w") as json_file:
         json.dump(game_dict, json_file)
 
-    return f'{file}.json'
+    return f'json/{file}.json'
 
 #Set up games
 mario1 = make_game("supermariobros", "/home/jmuszka/Downloads/supermariobros.nes", "Super Mario Bros.", "1985")
