@@ -17,3 +17,6 @@ fceux
 
 Snes9x
 --SNES emulator [flat package]
+
+Mupen64
+--Nintendo 64 emulator [tarball]

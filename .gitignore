@@ -1,4 +1,6 @@
 __pycache__
-nes/*
-snes/*
-json/*
+*.json
+*.nes
+*.smc
+*.sfc
+*.z64

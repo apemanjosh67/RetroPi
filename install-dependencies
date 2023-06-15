@@ -1,11 +1,13 @@
-echo "### Installing flatpak package installer ###"
+echo "### Installing flatpak package installer ###\n"
 apt install flatpak
-echo "\n### Installing NES Emulator ###"
+echo "\n\n### Installing NES Emulator ###\n"
 apt install fceux
-echo "\n### Installing SNES Emulator ###"
+echo "\n\n### Installing SNES Emulator ###\n"
 flatpak install -y com.snes9x.Snes9x
-echo "\n### Installing Python libraries ###"
+echo "\n\n### Installing Nintendo 64 Emulator ###\n"
+apt install mupen64plus-ui-console
+echo "\n\n### Installing Python libraries ###\n"
 apt install python3
 apt install python3-pip
 pip install pygame
-echo "\n### All dependencies installed, run program with command ./retropy ###"
+echo "\n\n### All dependencies installed, run program with command ./retropy ###\n"
