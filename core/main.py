@@ -64,4 +64,4 @@ snes = Emulator(snes_json)
 
 
 #Play!
-nes.play(tetris)
+snes.play(marioworld)
