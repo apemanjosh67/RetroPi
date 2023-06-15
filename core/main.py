@@ -5,68 +5,40 @@
 
 import os
 from shutil import copy
+from json import load
 from emulator import *
 from game import *
 
 #GLOBAL CONSOLE VARIABLES
-NES = "nes"
-SNES = "snes"
-N64 = "n64"
-
-
-#Generate JSON file for emulator
-def make_emulator(name, command, system=""):
-    emu_dict = {"system":system, "command":command}
-
-    with open(f'{os.getcwd()}/core/json/{name}.json', "w") as json_file:
-        json.dump(emu_dict, json_file)
-
-    return f'core/json/{name}.json'
-
-
-#Generate JSON file for game, and move ROM file
-def make_game(file, directory, system, name="", release=""):
-
-    #check if a valid game system was entered
-    if (system != NES and system != SNES and system != N64):
-        raise Exception("Invalid console")
-
-    #TODO: copy roms to respective folder
-    new_dir = f'{os.getcwd()}/core/{system}/{file}'
-    copy(directory, new_dir)
-
-    #make json file
-    file_name = file.split(".")[0]
-    game_dict = {"name":name, "system":system, "release":release, "directory":directory}
-    with open(f'{os.getcwd()}/core/json/{file_name}.json', "w") as json_file:
-        json.dump(game_dict, json_file)
-
-    return f'core/json/{file_name}.json'
+with open("core/vals/consoles.json", "r") as j: consoles = load(j)
+NES = consoles["nes"]
+SNES = consoles["snes"]
+N64 = consoles["n64"]
 
 
 #Set up games
-mario1 = make_game("supermariobros.nes", "/home/jmuszka/Downloads/supermariobros.nes", NES, "Super Mario Bros.", "1985")
-mario2 = make_game("lostlevels.nes", "/home/jmuszka/Downloads/lostlevels.nes", NES, "Super Mario Bros. The Lost Levels", "1986")
-tetris = make_game("tetris.nes", "/home/jmuszka/Downloads/tetris.nes", NES, "Tetris", "1984")
-marioworld = make_game("supermarioworld.smc", "/home/jmuszka/Downloads/supermarioworld.smc", SNES, "Super Mario World", "1990")
-mario64 = make_game("supermario64.z64", "/home/jmuszka/Downloads/supermario64.z64", N64, "Super Mario 64", "1996")
+mario_bros_JSON = Game.make_json("supermariobros.nes", "/home/jmuszka/Downloads/supermariobros.nes", NES, title="Super Mario Bros.", release="1985")
+lost_levels_JSON = Game.make_json("lostlevels.nes", "/home/jmuszka/Downloads/lostlevels.nes", NES, title="Super Mario Bros. The Lost Levels", release="1986")
+tetris_JSON = Game.make_json("tetris.nes", "/home/jmuszka/Downloads/tetris.nes", NES, title="Tetris", release="1984")
+mario_world_JSON = Game.make_json("supermarioworld.smc", "/home/jmuszka/Downloads/supermarioworld.smc", SNES, title="Super Mario World", release="1990")
+mario_64_JSON = Game.make_json("supermario64.z64", "/home/jmuszka/Downloads/supermario64.z64", N64, title="Super Mario 64", release="1996")
 
-mario1 = Game(mario1)
-mario2 = Game(mario2)
-tetris = Game(tetris)
-marioworld = Game(marioworld)
-mario64 = Game(mario64)
+mario1 = Game(mario_bros_JSON)
+mario2 = Game(lost_levels_JSON)
+tetris = Game(tetris_JSON)
+marioworld = Game(mario_world_JSON)
+mario64 = Game(mario_64_JSON)
 
 
 #Set up emulator
-nes_json = make_emulator(NES, "fceux", "Nintendo Entertainment System")
+nes_json = Emulator.make_json(NES, "fceux", NES)
 nes = Emulator(nes_json)
 
-snes_json = make_emulator(SNES, "flatpak run com.snes9x.Snes9x", "Super NES")
+snes_json = Emulator.make_json(SNES, "flatpak run com.snes9x.Snes9x", SNES)
 snes = Emulator(snes_json)
 
-n64_json = make_emulator(N64, "mupen64plus", "Nintendo 64")
+n64_json = Emulator.make_json(N64, "mupen64plus", N64)
 n64 = Emulator(n64_json)
 
 #Play!
-n64.play(mario64)
+nes.play(mario2)
