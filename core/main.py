@@ -42,4 +42,4 @@ n64_json = Emulator.make_json(N64, "mupen64plus", N64)
 n64 = Emulator(n64_json)
 
 #Play!
-nes.play(mario2)
+nes.play(mario1)

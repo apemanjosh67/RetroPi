@@ -12,15 +12,22 @@ const createWindow = () => {
     width: width,
     height: height,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
 
   win.setBackgroundColor("#2b2b2b")
   win.setMenu(null)
   win.loadFile('app/index.html')
+  win.webContents.openDevTools() //for debugging
+
 }
 
 app.whenReady().then(() => {
   createWindow()
 })
+
+
+
