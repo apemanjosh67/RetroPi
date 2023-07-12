@@ -8,6 +8,4 @@ echo "\n\n### Installing Nintendo 64 Emulator ###\n"
 apt install mupen64plus-ui-console
 echo "\n\n### Installing Python libraries ###\n"
 apt install python3
-apt install python3-pip
-pip install pygame
 echo "\n\n### All dependencies installed, run program with command ./retropy ###\n"

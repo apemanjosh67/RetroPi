@@ -4,3 +4,4 @@ json
 *.smc
 *.sfc
 *.z64
+.vscode
