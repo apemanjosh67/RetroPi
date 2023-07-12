@@ -1,45 +1,44 @@
 #Josh Muszka
 #PROJECT START DATE: June 15, 2023
-#LAST UPDATED: June 15, 2023
+#LAST UPDATED: July 12, 2023
 #GOAL: to make an Emulation hub for Nintendo games. Simply choose a game and play
 
-import os
-from shutil import copy
 from json import load
+import sys
 
 from emulator import *
 from game import *
 
-#GLOBAL CONSOLE VARIABLES
-with open("core/vals/consoles.json", "r") as j: consoles = load(j)
-NES = consoles["nes"]
-SNES = consoles["snes"]
-N64 = consoles["n64"]
+
+#PROGRAM'S COMMAND-LINE ARGUMENT: filename of the game's ROM name (without the extension)
+
+#Need to obtain:
+#   -game's json file
+#   -name of the console the game runs on
+#   -console's json file
+
+#So we can make:
+#   -Game object
+#   -Emulator object
+
+dir = f'core/json/{sys.argv[1]}.json'
+with open(dir, "r") as j: game_info = load(j)
+
+console_name = game_info["system"]
+
+game = Game(dir) #make game object
+console = Emulator(f'core/json/{console_name}.json') #make emulator object
 
 
-#Set up games
-mario_bros_JSON = Game.make_json("supermariobros.nes", "/home/jmuszka/Downloads/supermariobros.nes", NES, title="Super Mario Bros.", release="1985")
-lost_levels_JSON = Game.make_json("lostlevels.nes", "/home/jmuszka/Downloads/lostlevels.nes", NES, title="Super Mario Bros. The Lost Levels", release="1986")
-tetris_JSON = Game.make_json("tetris.nes", "/home/jmuszka/Downloads/tetris.nes", NES, title="Tetris", release="1984")
-mario_world_JSON = Game.make_json("supermarioworld.smc", "/home/jmuszka/Downloads/supermarioworld.smc", SNES, title="Super Mario World", release="1990")
-mario_64_JSON = Game.make_json("supermario64.z64", "/home/jmuszka/Downloads/supermario64.z64", N64, title="Super Mario 64", release="1996")
-
-mario1 = Game(mario_bros_JSON)
-mario2 = Game(lost_levels_JSON)
-tetris = Game(tetris_JSON)
-marioworld = Game(mario_world_JSON)
-mario64 = Game(mario_64_JSON)
+#Launch the game
+console.play(game)
 
 
-#Set up emulator
-nes_json = Emulator.make_json(NES, "fceux", NES)
-nes = Emulator(nes_json)
 
-snes_json = Emulator.make_json(SNES, "flatpak run com.snes9x.Snes9x", SNES)
-snes = Emulator(snes_json)
 
-n64_json = Emulator.make_json(N64, "mupen64plus", N64)
-n64 = Emulator(n64_json)
 
-#Play!
-nes.play(mario1)
+
+
+
+
+

@@ -20,10 +20,10 @@ function showGames(system) {
 }
 
 
-function play() {
+function play(game) {
 
     var spawn = require("child_process").spawn;
-    var process = spawn('python3', ["core/main.py"]);
+    var process = spawn('python3', ["core/main.py", game]);
 
     process.stdout.on('data', (data) => {
         console.log(`py3: ${data}`)
