@@ -1,0 +1,115 @@
+body {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#consoleSelect {
+    font-family: Helvetica;
+    color: white;
+    font-weight: bolder;
+    font-size: 30px;
+    margin: auto;
+    margin-bottom: 2%;
+}
+
+.cbutton {
+    padding:1%;
+    margin-top:0%;
+    margin-bottom:3%;
+    margin-right:5%;
+    margin-left:5%;
+    text-align:center;
+    /*width: 15%*/
+    display: inline;
+
+    position:relative;
+}
+
+.cbutton:hover {
+    background-color: #363636;
+    border-radius: 10px;
+}
+
+
+
+
+.gpanel {
+    display: block;
+}
+
+.gbutton {
+    width: 16%;
+    height: 16%;
+    margin-left: 4.5%;
+    margin-right: 4.5%;
+    margin-top:2%;
+    margin-bottom:2%;
+    float:left;
+
+    text-align:center;
+    font-family: Helvetica;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+
+    padding-bottom: 1%;
+}
+
+img {
+    width: 90%;
+    height: 90%;
+    margin:5%;
+    border-radius:3%;
+}
+
+.gbutton:hover {
+    background-color: #363636;
+    border-radius: 10px;
+}
+
+
+#opanel {
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+
+    font-family: Helvetica;
+    color: white;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+hr {
+    border: 1px solid #777777;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#nes {
+    display:block;
+}
+
+#snes {
+    display:none;
+}
+
+#n64 {
+    display:none;
+}
+
+#gamecube {
+    display:none;
+}
+
+#wii {
+    display:none;
+}

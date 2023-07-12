@@ -6,6 +6,7 @@
 import os
 from shutil import copy
 from json import load
+
 from emulator import *
 from game import *
 

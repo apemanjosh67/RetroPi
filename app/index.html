@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+
+    <link rel="stylesheet" href="style.css">
+    <title>RetroPi</title>
+</head>
+
+<body id="b">
+    <script src="events.js"></script>
+    
+    <!-- console select -->
+    <div id="consoleSelect" align="center">
+        <br>
+        <div class="cbutton" onclick="showGames('nes')">NES</div>
+        <div class="cbutton" onclick="showGames('snes')">SNES</div>
+        <div class="cbutton" onclick="showGames('n64')">NINTENDO 64</div>
+        <div class="cbutton" onclick="showGames('gamecube')">GAMECUBE</div>
+        <div class="cbutton" onclick="showGames('wii')">WII</div>
+    </div>
+    <hr>
+
+
+    <!-- displaying games -->
+    <div class="gpanel" id="nes">
+
+            <div class="gbutton">
+                <img src="mario.webp"/>
+                Super Mario Bros.
+            </div>
+
+            <div class="gbutton">
+                <img src="lostlevels.webp"/>
+                The Lost Levels
+            </div>
+
+            <div class="gbutton">
+                <img src="tetris.jpg"/>
+                Tetris
+            </div>
+
+    </div>
+
+    <div class="gpanel" id="snes">
+
+        <div class="gbutton">
+            <img src="marioworld.jpg"/>
+            Super Mario World
+        </div>
+
+    </div>
+
+    <div class="gpanel" id="n64">
+
+        <div class="gbutton">
+            <img src="mario64.jpg"/>
+            Super Mario 64
+        </div>
+
+    </div>
+
+    <!-- system buttons -->
+    <div id="opanel">
+
+        <div class="button">Add game</div>
+        <div class="button">Options</div>
+
+    </div>
+
+
+</body>
+
+</html>
