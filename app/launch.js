@@ -107,4 +107,17 @@ function addGamesOnLaunch() {
 
 }
 
+function initializeAddGameMenu() {
+    let yearSelector = document.getElementById('year')
+
+    for (let i = new Date().getFullYear(); i >= 1983; i--) {
+        let option = document.createElement('option');
+        option.value = i;
+        option.appendChild( document.createTextNode(i) )
+
+        yearSelector.appendChild(option)
+    }
+}
+
 addGamesOnLaunch();
+initializeAddGameMenu();

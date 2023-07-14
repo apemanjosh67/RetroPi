@@ -38,4 +38,22 @@ function play(game) {
     // })
 }
 
+function showAddGameMenu() {
+    document.body.classList.add('stop-scrolling') //disable scrolling
+
+    let menu = document.getElementById('apanel');
+    let screenCover = document.getElementById('screen-cover');
+
+    menu.style.display = "block" //show the menu
+    screenCover.style.display = "block" //dim the rest of the program
+}
+
+function closeAddGameMenu() {
+    //TODO: create game json file
+
+    document.body.classList.remove('stop-scrolling') //enable scrolling
+    document.getElementById('apanel').style.display = "none"; //hide the panel
+    document.getElementById('screen-cover').style.display = "none"; //un-dim the screen
+}
+
 

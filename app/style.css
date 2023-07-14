@@ -130,3 +130,43 @@ hr {
 #wii {
     display:none;
 }
+
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
+
+/* Add Game panel */
+
+#apanel {
+    position: fixed;
+    width: 30vw;
+    height: 85vh;
+    border-radius: 14px;
+
+    bottom:7.5vh;
+    right:35vw;
+
+
+    text-align:center;
+    font-family: Helvetica;
+    color: white;
+    font-weight: bold;
+    
+
+    background-color: #363636;
+    display: none;
+}
+
+#screen-cover {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #222222;
+    opacity: 0.80;
+    display: none;
+}

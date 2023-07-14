@@ -47,9 +47,51 @@
 
     <div class="opanel">
 
-        <div class="obutton">
-            <p style="">Add game</p>
-        </div>
+        <div class="obutton" onclick="showAddGameMenu()">Add game</div>
+
+    </div>
+
+
+    <!-- screen cover -->
+    <div id="screen-cover"></div>
+
+    <!-- add game menu -->
+    <div id="apanel">
+        <p style="font-size: 32px;">ADD GAME</p>
+
+        <form>
+
+            <!-- Title -->
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title"><br><br>
+
+            <!-- Release -->
+            <label for="year">Release:</label>
+            <select id="year" name="year">
+
+            <!-- Console -->
+            </select><br><br>
+
+            <label for="console">Console:</label>
+            <select id="console" name="console">
+                <option value="nes">NES</option>
+                <option value="snes">SNES</option>
+                <option value="n64">Nintendo 64</option>
+                <option value="gamecube">GameCube</option>
+                <option value="wii">Wii</option>
+              </select><br><br>
+
+            <!-- ROM -->
+            <label for="rom">ROM:</label>
+            <input type="file" id="myFile" name="filename"><br><br>
+
+            <!-- Image -->
+            <label for="image">Image:</label>
+            <input type="file" id="myFile" name="filename"><br><br>
+
+            <button type="button" onclick="closeAddGameMenu()">Add game</button>
+
+          </form>
 
     </div>
 
