@@ -64,28 +64,45 @@ body {
     padding-bottom: 1%;
 }
 
-img {
-    width: 90%;
-    height: 90%;
-    margin:5%;
-    border-radius:3%;
-}
-
 .gbutton:hover {
     background-color: #363636;
     border-radius: 10px;
 }
 
+img {
+    width: 90%;
+    height: 90%;
+    margin:5%;
 
-#opanel {
+    border-radius:3%;
+}
+
+.opanel {
+    display: inline-block;
     position: fixed;
-    bottom: 0%;
-    right: 0%;
+    right: 1.5%;
+    bottom: 1.0%;
 
+    width: 10vw;
+}
+
+.obutton {
+    width: 10vw;
+    height: 6vh;
+    margin: 3%;
+    border-radius: 10px;
+
+    text-align:center;
     font-family: Helvetica;
     color: white;
-    font-weight: bolder;
-    font-size: 18px;
+    font-weight: bold;
+    font-size: 24px;
+
+    line-height: 6vh;
+}
+
+.obutton:hover {
+    background-color: #363636;
 }
 
 hr {
