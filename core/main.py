@@ -31,6 +31,7 @@ console = Emulator(f'core/json/{console_name}.json') #make emulator object
 
 
 #Launch the game
+
 console.play(game)
 
 

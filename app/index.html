@@ -59,39 +59,53 @@
     <div id="apanel">
         <p style="font-size: 32px;">ADD GAME</p>
 
-        <form>
+        <div>
+            <form id="form" method="POST" action="/upload">
 
-            <!-- Title -->
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title"><br><br>
+                <div style="background-color: red; height:12vh;">
+                    <!-- Title -->
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title"><br><br>
+                </div>
 
-            <!-- Release -->
-            <label for="year">Release:</label>
-            <select id="year" name="year">
+                <div style="background-color: orange; height:12vh;">
+                    <!-- Release -->
+                    <label for="year">Release:</label>
+                    <select id="year" name="year">
+                    </select><br><br>
+                </div>
 
-            <!-- Console -->
-            </select><br><br>
+                <div style="background-color: pink; height:12vh;">
+                    <!-- Console -->
+                    
+                    <label for="console">Console:</label>
+                    <select id="system" name="system">
+                        <option value="nes">NES</option>
+                        <option value="snes">SNES</option>
+                        <option value="n64">Nintendo 64</option>
+                        <option value="gamecube">GameCube</option>
+                        <option value="wii">Wii</option>
+                    </select><br><br>
+                </div>
 
-            <label for="console">Console:</label>
-            <select id="console" name="console">
-                <option value="nes">NES</option>
-                <option value="snes">SNES</option>
-                <option value="n64">Nintendo 64</option>
-                <option value="gamecube">GameCube</option>
-                <option value="wii">Wii</option>
-              </select><br><br>
+                <div style="background-color: green; height:12vh;">
+                    <!-- ROM -->
+                    <label for="rom">ROM:</label>
+                    <input type="file" id="rom" name="filename"><br><br>
+                </div>
 
-            <!-- ROM -->
-            <label for="rom">ROM:</label>
-            <input type="file" id="myFile" name="filename"><br><br>
+                <div style="background-color: blue; height:12vh;">
+                    <!-- Image -->
+                    <label for="image">Image:</label>
+                    <input type="file" id="game-image" name="filename"><br><br>
+                </div>
 
-            <!-- Image -->
-            <label for="image">Image:</label>
-            <input type="file" id="myFile" name="filename"><br><br>
+                <div style="background-color: violet; height:12vh;">
+                    <input type="button" id="input" onclick="closeAddGameMenu()" value="Add game"></input>
+                </div>
 
-            <button type="button" onclick="closeAddGameMenu()">Add game</button>
-
-          </form>
+            </form>
+        </div>
 
     </div>
 

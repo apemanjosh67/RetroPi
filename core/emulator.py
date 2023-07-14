@@ -21,7 +21,8 @@ class Emulator:
         return self._command
 
     def play(self, game):
-        os.system( self._command+" "+game.get_directory() )
+        #print("COMMAND:", self._command+" "+game.get_directory() )
+        os.system( self._command+" "+ f'"{game.get_directory()}"' )
 
 
     #Generate a json file for the emulator

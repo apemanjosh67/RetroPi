@@ -49,11 +49,67 @@ function showAddGameMenu() {
 }
 
 function closeAddGameMenu() {
-    //TODO: create game json file
 
+    //Fields
+    let title = document.getElementById('title').value;
+    let year = document.getElementById('year').value;
+    let system = document.getElementById('system').value;
+    let rom = document.getElementById('rom').value;
+    let image = document.getElementById('game-image').value;
+
+    let correctRomName = rom.split(" ").join("")
+
+    //Generate JSON files
+    let coreJSON = {"title" : title,
+            "filename" : correctRomName.split('\\')[2],
+            "system" : require('../core/vals/consoles.json')[system],
+            "release" : year};
+
+    let appJSONPiece = {"title" : title,
+                "release" : year,
+                "icon" : image.split('\\')[2]};
+
+
+    //Save coreJSON file
+    var str = JSON.stringify(coreJSON);
+    var fs = require('fs');
+    fs.appendFileSync(`core/json/${title}.json`, str);
+
+    //Save appJSONPiece
+    var gamesJSON = require(`./json/${system}games.json`);
+    gamesJSON[title] = appJSONPiece
+    fs.writeFileSync(`app/json/${system}games.json`, JSON.stringify(gamesJSON));
+
+
+    //Move the ROM and image files into their respective directories
+    saveROM( rom.split('\\')[2],  coreJSON["system"])
+    saveImage( appJSONPiece["icon"] )
+
+    //Hide the Add Game menu
     document.body.classList.remove('stop-scrolling') //enable scrolling
     document.getElementById('apanel').style.display = "none"; //hide the panel
     document.getElementById('screen-cover').style.display = "none"; //un-dim the screen
+
+    //Update game panels
+    location.reload();
+    addGamesOnLaunch();
+
 }
 
+function saveROM(file, system) {
+    var spawn = require("child_process").spawn;
+    var process = spawn('python3', ["core/upload_rom.py", file, system]);
 
+    process.stdout.on('data', (data) => {
+        console.log(`py3: ${data}`)
+    })
+}
+
+function saveImage(file) {
+    var spawn = require("child_process").spawn;
+    var process = spawn('python3', ["core/upload_image.py", file]);
+
+    process.stdout.on('data', (data) => {
+        console.log(`py3: ${data}`)
+    })
+}

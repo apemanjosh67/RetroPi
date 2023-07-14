@@ -1,5 +1,6 @@
 function addGamesOnLaunch() {
 
+
     //Load the json files
     const nesGames = require('./json/nesgames.json')
     const snesGames = require('./json/snesgames.json')
@@ -13,6 +14,14 @@ function addGamesOnLaunch() {
     let n64Panel = document.getElementById('n64')
     let gamecubePanel = document.getElementById('gamecube')
     let wiiPanel = document.getElementById('wii')
+
+    //reset each panel
+    nesPanel.replaceChildren();
+    snesPanel.replaceChildren();
+    n64Panel.replaceChildren();
+    gamecubePanel.replaceChildren();
+    wiiPanel.replaceChildren();
+
 
     //Add NES games to NES panel
     for (let game in nesGames) {
