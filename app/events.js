@@ -48,7 +48,7 @@ function showAddGameMenu() {
     screenCover.style.display = "block" //dim the rest of the program
 }
 
-function closeAddGameMenu() {
+function closeAddGameMenu(wasCancelled) {
 
     //Fields
     let title = document.getElementById('title').value;
@@ -56,6 +56,20 @@ function closeAddGameMenu() {
     let system = document.getElementById('system').value;
     let rom = document.getElementById('rom').value;
     let image = document.getElementById('game-image').value;
+
+    //Reset the form values
+    document.getElementById('title').value = "";
+    document.getElementById('year').value = "";
+    document.getElementById('system').value = "";
+    document.getElementById('rom').value = "";
+    document.getElementById('game-image').value = "";
+
+    //Hide the Add Game menu
+    document.body.classList.remove('stop-scrolling') //enable scrolling
+    document.getElementById('apanel').style.display = "none"; //hide the panel
+    document.getElementById('screen-cover').style.display = "none"; //un-dim the screen
+
+    if (wasCancelled) return;
 
     let correctRomName = rom.split(" ").join("")
 
@@ -85,10 +99,7 @@ function closeAddGameMenu() {
     saveROM( rom.split('\\')[2],  coreJSON["system"])
     saveImage( appJSONPiece["icon"] )
 
-    //Hide the Add Game menu
-    document.body.classList.remove('stop-scrolling') //enable scrolling
-    document.getElementById('apanel').style.display = "none"; //hide the panel
-    document.getElementById('screen-cover').style.display = "none"; //un-dim the screen
+    //Reset the form data
 
     //Update game panels
     location.reload();
