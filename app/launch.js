@@ -22,6 +22,9 @@ function addGamesOnLaunch() {
     gamecubePanel.replaceChildren();
     wiiPanel.replaceChildren();
 
+    //click events
+    let leftClick = 'click'
+    let rightClick = 'contextmenu'
 
     //Add NES games to NES panel
     for (let game in nesGames) {
@@ -31,7 +34,8 @@ function addGamesOnLaunch() {
         let div = document.createElement('div')
         div.className = 'gbutton'
         div.id = game
-        div.addEventListener('click', () => { play(game) })
+        div.addEventListener(leftClick, () => { play(game) })
+        div.addEventListener(rightClick, () => { showDeleteMenu(game) })
 
         let text = document.createTextNode(nesGames[game]["title"])
         div.appendChild(img)
@@ -48,7 +52,8 @@ function addGamesOnLaunch() {
         let div = document.createElement('div')
         div.className = 'gbutton'
         div.id = game
-        div.addEventListener('click', () => { play(game) })
+        div.addEventListener(leftClick, () => { play(game) })
+        div.addEventListener(rightClick, () => { showDeleteMenu(game) })
 
         let text = document.createTextNode(snesGames[game]["title"])
         div.appendChild(img)
@@ -66,7 +71,8 @@ function addGamesOnLaunch() {
         let div = document.createElement('div')
         div.className = 'gbutton'
         div.id = game
-        div.addEventListener('click', () => { play(game) })
+        div.addEventListener(leftClick, () => { play(game) })
+        div.addEventListener(rightClick, () => { showDeleteMenu(game) })
 
         let text = document.createTextNode(n64Games[game]["title"])
         div.appendChild(img)
@@ -84,7 +90,8 @@ function addGamesOnLaunch() {
         let div = document.createElement('div')
         div.className = 'gbutton'
         div.id = game
-        div.addEventListener('click', () => { play(game) })
+        div.addEventListener(leftClick, () => { play(game) })
+        div.addEventListener(rightClick, () => { showDeleteMenu(game) })
 
         let text = document.createTextNode(gamecubeGames[game]["title"])
         div.appendChild(img)
@@ -102,7 +109,8 @@ function addGamesOnLaunch() {
         let div = document.createElement('div')
         div.className = 'gbutton'
         div.id = game
-        div.addEventListener('click', () => { play(game) })
+        div.addEventListener(leftClick, () => { play(game) })
+        div.addEventListener(rightClick, () => { showDeleteMenu(game) })
 
         let text = document.createTextNode(wiiGames[game]["title"])
         div.appendChild(img)
@@ -128,5 +136,15 @@ function initializeAddGameMenu() {
     }
 }
 
+function discordRichPresence() {
+    var spawn = require("child_process").spawn;
+    var process = spawn('python3', ["app/discord.py"]);
+
+    process.stdout.on('data', (data) => {
+        console.log(`py3: ${data}`)
+    })
+}
+
 addGamesOnLaunch();
 initializeAddGameMenu();
+discordRichPresence();

@@ -22,6 +22,14 @@ function showGames(system) {
 
 function play(game) {
 
+    //update status
+    var currentGameStatus = require(`./json/status.json`);
+    currentGameStatus["currentGame"] = game;
+    var str = JSON.stringify(currentGameStatus);
+    var fs = require('fs');
+    fs.writeFileSync(`app/json/status.json`, str);
+
+    //launch the game
     var spawn = require("child_process").spawn;
     var process = spawn('python3', ["core/main.py", game]);
 
@@ -38,6 +46,7 @@ function play(game) {
     // })
 }
 
+
 function showAddGameMenu() {
     document.body.classList.add('stop-scrolling') //disable scrolling
 
@@ -47,6 +56,7 @@ function showAddGameMenu() {
     menu.style.display = "block" //show the menu
     screenCover.style.display = "block" //dim the rest of the program
 }
+
 
 function closeAddGameMenu(wasCancelled) {
 
@@ -94,18 +104,16 @@ function closeAddGameMenu(wasCancelled) {
     gamesJSON[title] = appJSONPiece
     fs.writeFileSync(`app/json/${system}games.json`, JSON.stringify(gamesJSON));
 
-
     //Move the ROM and image files into their respective directories
     saveROM( rom.split('\\')[2],  coreJSON["system"])
     saveImage( appJSONPiece["icon"] )
 
-    //Reset the form data
-
     //Update game panels
-    location.reload();
+    //location.reload();
     addGamesOnLaunch();
 
 }
+
 
 function saveROM(file, system) {
     var spawn = require("child_process").spawn;
@@ -116,6 +124,7 @@ function saveROM(file, system) {
     })
 }
 
+
 function saveImage(file) {
     var spawn = require("child_process").spawn;
     var process = spawn('python3', ["core/upload_image.py", file]);
@@ -123,4 +132,30 @@ function saveImage(file) {
     process.stdout.on('data', (data) => {
         console.log(`py3: ${data}`)
     })
+}
+
+
+function showDeleteMenu(game) {
+    document.body.classList.add('stop-scrolling') //disable scrolling
+
+    //change header
+    document.getElementById("dheader").innerHTML = `Are you sure you want to delete ${game}?`
+
+    //dim screen
+    document.getElementById('screen-cover').style.display = 'block'
+
+    //show menu
+    document.getElementById('dpanel').style.display = 'block'
+}
+
+
+function closeDeleteMenu() {
+    //un dim screen
+    document.getElementById('screen-cover').style.display = 'none'
+
+    //enable scrolling
+    document.body.classList.remove('stop-scrolling')
+
+    //hide menu
+    document.getElementById('dpanel').style.display = 'none'
 }

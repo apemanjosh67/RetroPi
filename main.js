@@ -16,15 +16,16 @@ const createWindow = () => {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true
-    }
+    },
+    fullscreen: true
   })
 
   win.setBackgroundColor("#2b2b2b")
   win.setMenu(null)
   win.loadFile('app/index.html')
   win.webContents.openDevTools() //for debugging
-
 }
+app.disableHardwareAcceleration()
 
 app.whenReady().then(() => {
   createWindow()
