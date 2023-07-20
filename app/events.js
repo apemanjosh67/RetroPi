@@ -91,7 +91,8 @@ function closeAddGameMenu(wasCancelled) {
 
     let appJSONPiece = {"title" : title,
                 "release" : year,
-                "icon" : image.split('\\')[2]};
+                "icon" : image.split('\\')[2],
+                "console" : system};
 
 
     //Save coreJSON file
@@ -135,17 +136,25 @@ function saveImage(file) {
 }
 
 
-function showDeleteMenu(game) {
+function showDeleteMenu(game, title) {
     document.body.classList.add('stop-scrolling') //disable scrolling
 
     //change header
-    document.getElementById("dheader").innerHTML = `Are you sure you want to delete ${game}?`
+    document.getElementById("dheader").innerHTML = `Are you sure you want to delete ${title}?`
 
     //dim screen
     document.getElementById('screen-cover').style.display = 'block'
 
     //show menu
     document.getElementById('dpanel').style.display = 'block'
+
+
+    //update status
+    var gameToDelete = require(`./json/gametodelete.json`);
+    gameToDelete["game"] = game;
+    var str = JSON.stringify(gameToDelete);
+    var fs = require('fs');
+    fs.writeFileSync(`app/json/gametodelete.json`, str);
 }
 
 
@@ -158,4 +167,30 @@ function closeDeleteMenu() {
 
     //hide menu
     document.getElementById('dpanel').style.display = 'none'
+
+
+    //update status
+    var gameToDelete = require(`./json/status.json`);
+    gameToDelete["game"] = 'null';
+    var str = JSON.stringify(gameToDelete);
+    var fs = require('fs');
+    fs.writeFileSync(`app/json/gametodelete.json`, str);
+}
+
+function deleteGame() {
+    let gameToDelete = require('./json/gametodelete.json')['game']
+
+    //delete the DOM element
+    let gameButton = document.getElementById(gameToDelete);
+    gameButton.remove();
+
+    //delete from app json file
+
+    //delete image
+
+    //delete rom file
+
+    //delete core json
+
+    closeDeleteMenu();
 }

@@ -35,7 +35,7 @@ function addGamesOnLaunch() {
         div.className = 'gbutton'
         div.id = game
         div.addEventListener(leftClick, () => { play(game) })
-        div.addEventListener(rightClick, () => { showDeleteMenu(game) })
+        div.addEventListener(rightClick, () => { showDeleteMenu(game, nesGames[game]['title']) })
 
         let text = document.createTextNode(nesGames[game]["title"])
         div.appendChild(img)
@@ -137,6 +137,16 @@ function initializeAddGameMenu() {
 }
 
 function discordRichPresence() {
+
+    //update status
+    var currentGameStatus = require(`./json/status.json`);
+    currentGameStatus["currentGame"] = 'null';
+    var str = JSON.stringify(currentGameStatus);
+    var fs = require('fs');
+    fs.writeFileSync(`app/json/status.json`, str);
+
+
+    //launch
     var spawn = require("child_process").spawn;
     var process = spawn('python3', ["app/discord.py"]);
 
