@@ -45,14 +45,8 @@ function play(game) {
     var fs = require('fs')
     fs.writeFileSync('app/json/status.json', str)
 
-
-    // process.stderr.on('data', (data) => {
-    //   console.error(`stderr: ${data}`)
-    // })
-
-    // process.on('close', (code) => {
-    //   console.log(`child process exited with code ${code}`)
-    // })
+    document.getElementById('screen-cover').style.display = "block" //dim the rest of the program
+    document.body.classList.add('stop-scrolling') //disable scrolling
 }
 
 
@@ -277,4 +271,7 @@ function killCurrentGameSession() {
     str = JSON.stringify(status)
     var fs = require('fs')
     fs.writeFileSync('app/json/status.json', str)
+
+    document.getElementById('screen-cover').style.display = "none"; //un-dim the screen
+    document.body.classList.remove('stop-scrolling') //enable scrolling
 }

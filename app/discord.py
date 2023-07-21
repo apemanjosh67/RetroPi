@@ -81,7 +81,7 @@ while 1:
     elapsed_time+=1
 
     RPC.update(
-            state="Time elapsed: {}s".format( get_formatted_time(elapsed_time) ), 
+            state="{}s".format( get_formatted_time(elapsed_time) ), 
             details= get_game(),
             large_image="superfamicom",
             #large_text="Coding in {}".format(get_language(file).capitalize()),
