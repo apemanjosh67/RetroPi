@@ -17,11 +17,42 @@ RPC.update(state="Time elapsed: 00:00:00s", details=status)
 
 #----- ACTIVITY -----#
 
-def get_game():
-    with open("app/json/status.json", "r") as j: status = json.load(j)
+def get_console(game):
+    with open("app/json/nesgames.json", "r") as j: nes_games = json.load(j)
+    with open("app/json/snesgames.json", "r") as j: snes_games = json.load(j)
+    with open("app/json/n64games.json", "r") as j: n64_games = json.load(j)
+    with open("app/json/gamecubegames.json", "r") as j: gamecube_games = json.load(j)
+    with open("app/json/wiigames.json", "r") as j: wii_games = json.load(j)
 
-    if (status["currentGame"] == "null"): return "Browsing games"
-    return status["currentGame"]
+    #Check NES games
+    for g in nes_games:
+        if g == game: return nes_games[g]["console"]
+
+    #Check SNES games
+    for g in snes_games:
+        if g == game: return snes_games[g]["console"]
+
+    #Check N64 games
+    for g in n64_games:
+        if g == game: return n64_games[g]["console"]
+
+    #Check GameCube games
+    for g in gamecube_games:
+        if g == game: return gamecube_games[g]["console"]
+
+    #Check Wii games
+    for g in wii_games:
+        if g == game: return wii_games[g]["console"]
+
+
+def get_game():
+    with open("app/json/status.json", "r") as j: game = json.load(j)["currentGame"]
+    
+    if (game == "null"): return "Browsing games"
+
+    console = get_console(game)
+    with open(f'app/json/{console}games.json', "r") as j: status = json.load(j)[game]["title"]
+    return status
 
 def get_formatted_time(elapsed_time):
     secs = 0
