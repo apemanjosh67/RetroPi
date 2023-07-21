@@ -23,7 +23,7 @@ const createWindow = () => {
   win.setBackgroundColor("#2b2b2b")
   win.setMenu(null)
   win.loadFile('app/index.html')
-  win.webContents.openDevTools() //for debugging
+  //win.webContents.openDevTools() //for debugging
 }
 app.disableHardwareAcceleration()
 

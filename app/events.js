@@ -117,7 +117,10 @@ function closeAddGameMenu(wasCancelled) {
 
     //Update game panels
     //location.reload();
-    addGamesOnLaunch();
+
+    setTimeout(function() {
+        addGamesOnLaunch();
+      }, 1000);
 
 }
 

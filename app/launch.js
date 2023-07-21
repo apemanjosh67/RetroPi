@@ -134,6 +134,14 @@ function initializeAddGameMenu() {
 
         yearSelector.appendChild(option)
     }
+
+    //Reset the form values
+    document.getElementById('title').value = "";
+    document.getElementById('year').value = "";
+    document.getElementById('system').value = "";
+    document.getElementById('rom').value = "";
+    document.getElementById('game-image').value = "";
+    
 }
 
 function discordRichPresence() {
