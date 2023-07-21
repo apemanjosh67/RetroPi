@@ -44,6 +44,9 @@ def get_console(game):
     for g in wii_games:
         if g == game: return wii_games[g]["console"]
 
+def get_year(game):
+    with open(f'core/json/{game}.json', "r") as j: game_JSON = json.load(j)
+    return game_JSON["year"]
 
 def get_game():
     with open("app/json/status.json", "r") as j: game = json.load(j)["currentGame"]
@@ -80,9 +83,12 @@ while 1:
     time.sleep(1)
     elapsed_time+=1
 
+    if get_game() == "Browsing games": status = get_game()
+    else: status = f'{get_game()} ({get_year( get_game() )})'
+
     RPC.update(
             state="{}s".format( get_formatted_time(elapsed_time) ), 
-            details= get_game(),
+            details = status,
             large_image="superfamicom",
             #large_text="Coding in {}".format(get_language(file).capitalize()),
             #small_image="superfamicom",
