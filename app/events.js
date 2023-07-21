@@ -181,6 +181,7 @@ function closeDeleteMenu() {
     var str = JSON.stringify(gameToDelete);
     var fs = require('fs');
     fs.writeFileSync(`app/json/gametodelete.json`, str);
+
 }
 
 function getConsole(game) {

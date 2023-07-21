@@ -163,6 +163,12 @@ function addListeners() {
             killCurrentGameSession();
         }
     };
+
+    //to quit program
+    const { ipcRenderer } = require('electron');
+    document.getElementById('qbutton').addEventListener('click', () => {
+        ipcRenderer.send('quit-app');
+    })
 }
 
 addGamesOnLaunch();

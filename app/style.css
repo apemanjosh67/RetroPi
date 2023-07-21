@@ -270,3 +270,26 @@ input[type=text], select {
     top: 50%;
     transform: translateY(-60%);
   }
+
+  #qbutton {
+    position:fixed; 
+    width: 4vw; 
+    height: 4vw; 
+    line-height: 4vw;
+    text-align:center;
+    font-family: Helvetica;
+    color: #2b2b2b;
+    font-weight: bold;
+    font-size: 32px;
+
+    border-radius: 8px;
+
+    top: 1%;
+    right: 1%;
+  }
+
+  #qbutton:hover {
+    display: block;
+    background-color: #323232;
+    color: white;
+  }

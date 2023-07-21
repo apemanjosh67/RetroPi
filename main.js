@@ -1,5 +1,5 @@
 const electron = require("electron")
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 
@@ -30,3 +30,9 @@ app.disableHardwareAcceleration()
 app.whenReady().then(() => {
   createWindow()
 })
+
+
+// Listen for the quit request from the renderer process
+ipcMain.on('quit-app', () => {
+  app.quit();
+});
