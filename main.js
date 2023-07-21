@@ -30,6 +30,3 @@ app.disableHardwareAcceleration()
 app.whenReady().then(() => {
   createWindow()
 })
-
-
-////////////////////////////

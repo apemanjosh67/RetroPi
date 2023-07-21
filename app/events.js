@@ -31,11 +31,20 @@ function play(game) {
 
     //launch the game
     var spawn = require("child_process").spawn;
-    var process = spawn('python3', ["core/main.py", game]);
+    var proc = spawn('python3', ["core/main.py", game]);
 
-    process.stdout.on('data', (data) => {
+    proc.stdout.on('data', (data) => {
         console.log(`py3: ${data}`)
     })
+
+    //record the PID of the game
+    let status = require('./json/status.json')
+
+    status['pid'] = proc.pid
+    str = JSON.stringify(status)
+    var fs = require('fs')
+    fs.writeFileSync('app/json/status.json', str)
+
 
     // process.stderr.on('data', (data) => {
     //   console.error(`stderr: ${data}`)
@@ -252,4 +261,20 @@ function deleteGame() {
     fs.unlinkSync(filePath);
 
     closeDeleteMenu();
+}
+
+function killCurrentGameSession() {
+    let status = require('./json/status.json')
+    let pid = status['pid']
+
+    if (pid == 'null') return
+
+    //process.kill(pid)
+    const kill = require('tree-kill');
+    kill(pid, 'SIGKILL')
+
+    status['pid'] = 'null'
+    str = JSON.stringify(status)
+    var fs = require('fs')
+    fs.writeFileSync('app/json/status.json', str)
 }

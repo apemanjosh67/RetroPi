@@ -155,6 +155,17 @@ function discordRichPresence() {
     })
 }
 
+function addListeners() {
+    //to quit a game
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        if (evt.keyCode == 27) {
+            killCurrentGameSession();
+        }
+    };
+}
+
 addGamesOnLaunch();
 initializeAddGameMenu();
 discordRichPresence();
+addListeners()
