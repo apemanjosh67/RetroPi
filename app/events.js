@@ -83,6 +83,9 @@ function closeAddGameMenu(wasCancelled) {
 
     let correctRomName = rom.split(" ").join("")
 
+    //if fields were blank, abort
+    if (title == '' || year == '' || system == '' || rom == '' || image == '') return
+
     //Generate JSON files
     let coreJSON = {"title" : title,
             "filename" : correctRomName.split('\\')[2],
@@ -170,27 +173,83 @@ function closeDeleteMenu() {
 
 
     //update status
-    var gameToDelete = require(`./json/status.json`);
+    var gameToDelete = require(`./json/gametodelete.json`);
     gameToDelete["game"] = 'null';
     var str = JSON.stringify(gameToDelete);
     var fs = require('fs');
     fs.writeFileSync(`app/json/gametodelete.json`, str);
 }
 
+function getConsole(game) {
+    //Load the json files
+    const nesGames = require('./json/nesgames.json')
+    const snesGames = require('./json/snesgames.json')
+    const n64Games = require('./json/n64games.json')
+    const gamecubeGames = require('./json/gamecubegames.json')
+    const wiiGames = require('./json/wiigames.json')
+
+    for (nesGame in nesGames) {
+        console.log(`${nesGame}---${game}`)
+        if (game == nesGame) {
+            return 'nes';
+        }
+    }
+
+    for (snesGame in snesGames) {
+        if (game == snesGame) {
+            return 'snes';
+        }
+    }
+
+    for (n64Game in n64Games) {
+        if (game == n64Game) {
+            return 'n64';
+        }
+    }
+
+    for (gamecubeGame in gamecubeGames) {
+        if (game == gamecubeGame) {
+            return 'gamecube';
+        }
+    }
+
+    for (wiiGame in wiiGames) {
+        if (game == wiiGame) {
+            return 'wii';
+        }
+    }
+}
+
 function deleteGame() {
+    var fs = require('fs')
     let gameToDelete = require('./json/gametodelete.json')['game']
+    let system = getConsole(gameToDelete)
+    let gamesList = require(`./json/${system}games.json`)
+    let icon = gamesList[gameToDelete]['icon']
+
+
 
     //delete the DOM element
     let gameButton = document.getElementById(gameToDelete);
     gameButton.remove();
 
     //delete from app json file
+    delete gamesList[gameToDelete]
+    var str = JSON.stringify(gamesList);
+    fs.writeFileSync(`app/json/${system}games.json`, str);
 
     //delete image
+    var filePath = `app/img/${icon}`; 
+    fs.unlinkSync(filePath);
 
     //delete rom file
+    let gameJSON = require(`../core/json/${gameToDelete}`)
+    var filePath = `core/${gameJSON['system'].split(' ').join('')}/${gameJSON['filename']}`; 
+    fs.unlinkSync(filePath);
 
     //delete core json
+    var filePath = `core/json/${gameToDelete}.json`
+    fs.unlinkSync(filePath);
 
     closeDeleteMenu();
 }
