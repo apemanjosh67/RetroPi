@@ -41,6 +41,9 @@ function addGamesOnLaunch() {
         div.appendChild(img)
         div.appendChild(text)
 
+        //disable image dragging
+        div.ondragstart = () => {return false;};
+
         nesPanel.appendChild(div)
     }
 
@@ -59,6 +62,8 @@ function addGamesOnLaunch() {
         div.appendChild(img)
         div.appendChild(text)
 
+        //disable image dragging
+        div.ondragstart = () => {return false;};
 
         snesPanel.appendChild(div)
     }
@@ -78,6 +83,8 @@ function addGamesOnLaunch() {
         div.appendChild(img)
         div.appendChild(text)
 
+        //disable image dragging
+        div.ondragstart = () => {return false;};
 
         n64Panel.appendChild(div)
     }
@@ -97,6 +104,8 @@ function addGamesOnLaunch() {
         div.appendChild(img)
         div.appendChild(text)
 
+        //disable image dragging
+        div.ondragstart = () => {return false;};
 
         gamecubePanel.appendChild(div)
     }
@@ -116,6 +125,8 @@ function addGamesOnLaunch() {
         div.appendChild(img)
         div.appendChild(text)
 
+        //disable image dragging
+        div.ondragstart = () => {return false;};
 
         wiiPanel.appendChild(div)
     }
@@ -141,7 +152,7 @@ function initializeAddGameMenu() {
     document.getElementById('system').value = "";
     document.getElementById('rom').value = "";
     document.getElementById('game-image').value = "";
-    
+
 }
 
 function discordRichPresence() {
