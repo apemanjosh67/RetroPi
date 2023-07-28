@@ -190,7 +190,12 @@ function addListeners() {
     })
 }
 
+function setBackgroundImage() {
+    document.getElementById("nes").style.backgroundImage = "img/arcade.png"
+}
+
 addGamesOnLaunch();
 initializeAddGameMenu();
 discordRichPresence();
 addListeners()
+setBackgroundImage();

@@ -5,7 +5,10 @@ apt install fceux
 echo "\n\n### Installing SNES Emulator ###\n"
 flatpak install -y com.snes9x.Snes9x
 echo "\n\n### Installing Nintendo 64 Emulator ###\n"
-apt install mupen64plus-ui-console
+flatpak install flathub io.github.simple64.simple64
+echo "\n\n### Installing GameCube and Wii Emulator ##\n"
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub org.DolphinEmu.dolphin-emu
 echo "\n\n### Installing Python libraries ###\n"
 apt install python3
 echo "\n\n### All dependencies installed, run program with command ./retropy ###\n"
