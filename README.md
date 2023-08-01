@@ -44,9 +44,19 @@ USB-compatible NES, SNES, N64, GameCube, & Wii controllers
 
 ## Why was it made?
 
+The RetroPi project was born out of my passion for retro Nintendo games, and thus to preserve and relive the nostalgic gaming experiences of the past. These old games were a large part of my childhood, so developing an elegant and cool way to play them proved to be a fun and perplexing project.
+
+Retro gaming enthusiasts often face the challenge of collecting and maintaining a variety of vintage consoles and cartridges, which can be both costly and space-consuming. RetroPi serves as an all-in-one gaming console that consolidates multiple Nintendo platforms into a single device. It provides a convenient and streamlined solution for enjoying games from various eras.
+
+As an advocate of "free and open source software," I was interested in running the project on open source software (Linux OS) and open source hardware (Raspberry Pi); both of which proved to be lightwieght and thus perfect for deploying this project. I also documented the project and its components online, so that anyone could create this for themselves, or develop something inspired by my work.
+
+This project has been a tremendous learning experience, providing valuable insights into many different realms of technology. Through its development I've gained experience in designing larger-scale software applications, learned new tech stacks, delved into the depths of Raspberry Pi hardware, and had my first foray into 3D printing. RetroPi allowed me to explore my passion for the world of retro gaming and technology.
+
 <hr>
 
 ## Software
+
+
 
 <hr>
 
