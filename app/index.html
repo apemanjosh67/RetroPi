@@ -14,45 +14,50 @@
     <script src="events.js"></script>
     <script src="audio.js"></script>
     
-    <!-- console select -->
-    <div id="consoleSelect" align="center">
-        <br>
-        <div class="cbutton" onclick="showGames('nes')">NES</div>
-        <div class="cbutton" onclick="showGames('snes')">SNES</div>
-        <div class="cbutton" onclick="showGames('n64')">NINTENDO 64</div>
-        <div class="cbutton" onclick="showGames('gamecube')">GAMECUBE</div>
-        <div class="cbutton" onclick="showGames('wii')">WII</div>
+    <div class="background-image">
+    <div class="background-tint">
+
+        <!-- console select -->
+        <div id="consoleSelect" align="center">
+            <div class="cbutton" onclick="showGames('nes')">NES</div>
+            <div class="cbutton" onclick="showGames('snes')">SNES</div>
+            <div class="cbutton" onclick="showGames('n64')">NINTENDO 64</div>
+            <div class="cbutton" onclick="showGames('gamecube')">GAMECUBE</div>
+            <div class="cbutton" onclick="showGames('wii')">WII</div>
+            <hr>
+        </div>
+        
+        <!-- Close button -->
+        <div id="qbutton">x</div>
+
+
+        <!-- displaying games -->
+
+        <div class="gpanel" id="nes">
+        </div>
+
+        <div class="gpanel" id="snes">
+        </div>
+
+        <div class="gpanel" id="n64">
+        </div>
+
+        <div class="gpanel" id="gamecube">
+        </div>
+
+        <div class="gpanel" id="wii">
+        </div>
+
+
+        <!-- system buttons -->
+
+        <div class="opanel">
+
+            <div class="obutton" onclick="showAddGameMenu()">Add game</div>
+
+        </div>
+
     </div>
-    <hr>
-
-    <!-- Close button -->
-    <div id="qbutton">x</div>
-
-
-    <!-- displaying games -->
-
-    <div class="gpanel" id="nes">
-    </div>
-
-    <div class="gpanel" id="snes">
-    </div>
-
-    <div class="gpanel" id="n64">
-    </div>
-
-    <div class="gpanel" id="gamecube">
-    </div>
-
-    <div class="gpanel" id="wii">
-    </div>
-
-
-    <!-- system buttons -->
-
-    <div class="opanel">
-
-        <div class="obutton" onclick="showAddGameMenu()">Add game</div>
-
     </div>
 
 
