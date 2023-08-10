@@ -11,9 +11,10 @@ body {
 
 }
 
-.background-image {
+#background-image {
     
-    background-image: url("https://www.gamingdose.com/wp-content/uploads/2019/10/Arcade.jpg");
+    /*background-image: url("https://www.gamingdose.com/wp-content/uploads/2019/10/Arcade.jpg");*/
+    background-image: url("arcade.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
