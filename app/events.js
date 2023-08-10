@@ -279,3 +279,60 @@ function killCurrentGameSession() {
     document.getElementById('screen-cover').style.display = "none"; //un-dim the screen
     document.body.classList.remove('stop-scrolling') //enable scrolling
 }
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function changeBackground() {
+    //declare variables
+    let list = ["gameroom.jpg", "arcade.jpg", "nesroom.jpg", "pc.jpg", "tokyo.jpg"];
+    let queue = [];
+    const QUEUE_LIMIT = list.length-1;
+    let queueStart = 0; //for circular array
+
+    while(true) {
+        //randomly choose list index
+        let i = Math.floor(Math.random()*list.length);
+
+        //print element at index
+        console.log(list[i]);
+
+        //remove from list and add to queue
+        let oldList = list;
+        list = [];
+        for (let j = 0; j < oldList.length; j++) {
+            if (j!=i) { list.push(oldList[j]) }
+        }
+        let s = ""
+        for (let j = 0; j < list.length; j++) {
+            s += list[j] + " "
+        }
+        console.log(`LIST: ${s}`)
+
+        //update queue
+        if (queue.length < QUEUE_LIMIT) { queue.push(oldList[i]) }
+        else {
+            //add first element from queue to list
+            list.push(queue[queueStart])
+
+            //dequeue
+            queue[queueStart] = oldList[i];
+            queueStart = (queueStart+1)%QUEUE_LIMIT;
+        }
+        s = ""
+        for (let j = 0; j < queue.length; j++) {
+            s += queue[j] + " "
+        }
+        console.log(`QUEUE: ${s}`)
+        console.log("---------------")
+
+        await sleep(5000);
+
+        document.getElementById('background-image').style.backgroundImage = `url("${oldList[i]}")`
+        //document.getElementById('background-image').style.backgroundImage = `url("gameroom.jpg")`
+        //console.log(oldList[i])
+    }
+}
+
+changeBackground();
