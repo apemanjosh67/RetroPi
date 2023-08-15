@@ -104,7 +104,7 @@ function closeAddGameMenu(wasCancelled) {
     //Save coreJSON file
     var str = JSON.stringify(coreJSON);
     var fs = require('fs');
-    fs.appendFileSync(`core/json/${title}.json`, str);
+    fs.writeFileSync(`core/json/${title}.json`, str);
 
     //Save appJSONPiece
     var gamesJSON = require(`./json/${system}games.json`);
@@ -116,11 +116,7 @@ function closeAddGameMenu(wasCancelled) {
     saveImage( appJSONPiece["icon"] )
 
     //Update game panels
-    //location.reload();
-
-    setTimeout(function() {
-        addGamesOnLaunch();
-      }, 1000);
+    addGamesOnLaunch();
 
 }
 
