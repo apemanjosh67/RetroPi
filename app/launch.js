@@ -1,4 +1,18 @@
-function addGamesOnLaunch() {
+async function loadImage(imgUrl) {
+    let img;
+
+    const imageLoadPromise = new Promise(resolve => {
+        img = new Image();
+        img.onload = resolve;
+        img.src = imgUrl;
+    });
+
+    await imageLoadPromise;
+    console.log(img);
+    return img;
+}
+
+async function addGamesOnLaunch() {
 
 
     //Load the json files
@@ -28,8 +42,10 @@ function addGamesOnLaunch() {
 
     //Add NES games to NES panel
     for (let game in nesGames) {
-        let img = document.createElement('img')
-        img.src = `./img/${nesGames[game]["icon"]}`
+        //let img = document.createElement('img')
+        //img.src = `./img/${nesGames[game]["icon"]}`
+        
+        let img = await loadImage(`./img/${nesGames[game]["icon"]}`)
 
         let div = document.createElement('div')
         div.className = 'gbutton'
