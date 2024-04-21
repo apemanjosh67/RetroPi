@@ -10,3 +10,4 @@ __pycache__
 *.webp
 *.png
 *.jpeg
+node_modules
